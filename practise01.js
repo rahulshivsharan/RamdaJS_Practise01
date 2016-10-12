@@ -36,6 +36,7 @@ console.log(myArray);
 */
 
 
+/*
 var myArray = [12,34,45,56];
 var allFn = R.all(fn)
 
@@ -61,3 +62,31 @@ function fnOne(f){
 }
 
 console.log(allFn(myArray));
+*/
+
+///////// Example One ////////////////////////
+var isTwenty = R.propEq("age",20),
+	hasMerce = R.propEq("car","Mercedes");
+
+var isTwentyOwnsMerc = R.allPass([isTwenty,hasMerce]);
+console.log(isTwentyOwnsMerc({ "age" : 20, "car" : "Mercedes"}));
+console.log(isTwentyOwnsMerc({ "age" : 34, "car" : "Wagon R"}));
+
+///////// Example Two ////////////////////////
+var isEven = function(num){	
+	return (num % 2) === 0;	
+}
+
+var isDivisibleByThree = function(num){	
+	return (num % 3) === 0;	
+}
+
+var isEvenDivByThree = R.allPass([isEven,isDivisibleByThree]);
+
+console.log(isEvenDivByThree(24));
+console.log(isEvenDivByThree(14));
+
+///////// Example Three ////////////////////////
+console.log(R.all(isEvenDivByThree)([24,12,36]));
+console.log(R.all(isEvenDivByThree)([24,15,39]));
+
