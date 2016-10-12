@@ -64,6 +64,7 @@ function fnOne(f){
 console.log(allFn(myArray));
 */
 
+/*
 ///////// Example One ////////////////////////
 var isTwenty = R.propEq("age",20),
 	hasMerce = R.propEq("car","Mercedes");
@@ -89,4 +90,20 @@ console.log(isEvenDivByThree(14));
 ///////// Example Three ////////////////////////
 console.log(R.all(isEvenDivByThree)([24,12,36]));
 console.log(R.all(isEvenDivByThree)([24,15,39]));
+*/
 
+
+var isEven = function(num){	
+	return (num % 2) === 0;	
+}
+
+var isDivisibleByThree = function(num){	
+	return (num % 3) === 0;	
+}
+
+var isEvenOrDivByThree = R.anyPass([isEven,isDivisibleByThree]);
+console.log(" 24 "+isEvenOrDivByThree(24));
+console.log(" 14 "+isEvenOrDivByThree(14));
+console.log(" 45 "+isEvenOrDivByThree(45));
+
+console.log(" [24,15,39] "+R.all(isEvenOrDivByThree)([24,15,39]));
